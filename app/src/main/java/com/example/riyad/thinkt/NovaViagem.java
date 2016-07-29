@@ -33,6 +33,7 @@ public class NovaViagem extends Activity {
         setContentView(R.layout.activity_nova_viagem);
         ActionBar actionBar = getActionBar();
         actionBar.setTitle("Nova Viagem");
+        actionBar.setIcon(R.drawable.nova_viagem);
         //Funcao que ativa o botao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
         viagem = new Viagem();
@@ -105,7 +106,7 @@ public class NovaViagem extends Activity {
 
         public void onDateSet(DatePicker view, int ano, int mes, int dia ){
             //Faz alguma coisa com a data escolhida pelo usuario
-            data = (dia + " - " + (mes+1) + " - " + ano);
+            data = (dia + "/" + (mes+1) + "/" + ano);
 
         }
     }
@@ -122,6 +123,7 @@ public class NovaViagem extends Activity {
         EditText et_Destino = (EditText) findViewById(R.id.et_Destino);
         destino = et_Destino.getText().toString();
         viagem.setLocalViagem(destino);
+        viagem.setData(data);
         dao.adiciona(viagem);
         toast("viagem gravada com sucesso!\nDestino: " + destino + "\nTipo: " + tipo + "\ndata: " + data);
     }

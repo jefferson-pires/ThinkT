@@ -13,50 +13,38 @@
         android:id="@+id/nova_viagem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="80dp"
         android:clickable="true"
         android:gravity="center"
         android:drawableTop="@drawable/nova_viagem"
         android:onClick="novaViagem"
-        android:text="Nova viagem"/>
+        android:text="Nova viagem"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/minhas_viagens"
+        android:layout_alignStart="@+id/minhas_viagens" />
 
     <TextView
         android:id="@+id/novo_gasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignTop="@id/nova_viagem"
-        android:layout_marginRight="50dp"
         android:clickable="true"
         android:gravity="center"
         android:drawableTop="@drawable/novo_gasto"
         android:onClick="novoGasto"
-        android:text="Novo gasto"/>
+        android:text="Novo gasto"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/minhas_viagens"
+        android:layout_alignEnd="@+id/minhas_viagens" />
 
     <TextView
         android:id="@+id/minhas_viagens"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/nova_viagem"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="120dp"
         android:clickable="true"
         android:gravity="center"
         android:drawableTop="@drawable/minhas_viagens"
         android:onClick="minhasViagens"
-        android:text="Minhas viagens"/>
-
-    <TextView
-        android:id="@+id/perfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/minhas_viagens"
-        android:layout_alignRight="@+id/novo_gasto"
-        android:clickable="true"
-        android:gravity="center"
-        android:drawableTop="@drawable/negocios"
-        android:onClick="meuPerfil"
-        android:text="Meu perfil"/>
+        android:text="Minhas viagens"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

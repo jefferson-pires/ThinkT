@@ -24,6 +24,7 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
         ActionBar actionBar = getActionBar();
         actionBar.setTitle("Minhas viagens");
         actionBar.setHomeButtonEnabled(true);
+        actionBar.setIcon(R.drawable.minhas_viagens);
         //Funcao que ativa o botao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
 

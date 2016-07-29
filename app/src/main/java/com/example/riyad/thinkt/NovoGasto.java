@@ -14,6 +14,7 @@ public class NovoGasto extends Activity {
         setContentView(R.layout.activity_novo_gasto);
         ActionBar actionBar = getActionBar();
         actionBar.setTitle("Novo Gasto");
+        actionBar.setIcon(R.drawable.novo_gasto);
         //Funcao que ativa o botao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
     }

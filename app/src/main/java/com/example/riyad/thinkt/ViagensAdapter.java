@@ -42,10 +42,21 @@ public class ViagensAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = LayoutInflater.from(context).inflate(R.layout.adapter_viagens,parent,false);
         TextView localViagem = (TextView) view.findViewById(R.id.localViagem);
+        TextView dataViagem = (TextView) view.findViewById(R.id.dataViagem);
+        TextView totalGastos = (TextView) view.findViewById(R.id.totalGastos);
         ImageView img = (ImageView) view.findViewById(R.id.imagemTipoViagem);
+
         Viagem viagem = viagens.get(position);
+
+        // Converter o total gastos em String
+        String totalGastosString = String.valueOf(viagem.totalGastos());
+        // Retira o ponto e coloca virgula
+        String totalFinal = totalGastosString.replace(".",",");
+
         localViagem.setText(viagem.getLocalViagem());
         img.setImageResource(viagem.getIcone());
+        dataViagem.setText(viagem.getData());
+        totalGastos.setText("Total gasto: " + totalFinal);
         return view;
     }
 }
