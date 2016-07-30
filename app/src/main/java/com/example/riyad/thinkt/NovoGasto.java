@@ -9,7 +9,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -18,11 +20,14 @@ import java.lang.reflect.Array;
 import java.util.Calendar;
 import java.util.List;
 
-public class NovoGasto extends Activity {
+public class NovoGasto extends Activity{
     public static String data = "";
 
     private List<String> destino;
     DAO dao;
+    private  static  Button bt_data;
+    private String destino_nome ="teste";
+    private String tipo_nome ="teste";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +42,45 @@ public class NovoGasto extends Activity {
         //Pega todos os nomes de todas as viagens
         destino = dao.nomesViagens();
         //Cria o primeiro spinner (viagens)
-        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         //Cria um ArrayAdapter usando um layout de spinner padrao
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, destino);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
+        //Se selecionar algum destino atualiza a variavel nome_destino
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id){
+                //Atualiza o nome
+                destino_nome = spinner.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+
+            }
+        });
         //Cria o segundo spinner(tipo de gasto)
-        Spinner tipos = (Spinner) findViewById(R.id.spinner2);
+        final Spinner tipos = (Spinner) findViewById(R.id.spinner2);
         //Cria um ArrayAdapter usando o array de string tipos_de_gastos
         ArrayAdapter<CharSequence> gastosAdapter = ArrayAdapter.createFromResource(this, R.array.tipos_de_gasto, android.R.layout.simple_spinner_item);
         //Especifica um layout para ser usado quando a lista de escolhas aparecer
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
         //Aplica o adaptador no spinner
         tipos.setAdapter(gastosAdapter);
+        //Se selecionar algum tipo atualiza o valor da variavel tipo_nome
+        tipos.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id){
+                //atualiza o nome do tipo
+                tipo_nome = tipos.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+
+            }
+        });
+        //Cria-se um botao
+        bt_data = (Button) findViewById(R.id.bt_DatePicker);
 
     }
 
@@ -97,9 +128,16 @@ public class NovoGasto extends Activity {
         public void onDateSet(DatePicker view, int ano, int mes, int dia ){
             //Faz alguma coisa com a data escolhida pelo usuario
             data = (dia + "/" + (mes+1) + "/" + ano);
+            //O botao assume o valor da data escolhida pelo usuario
+            bt_data.setText(data);
 
         }
     }
+
+    public void salvarGasto(View v){
+        toast("Gasto salvo com sucesso!\n" + destino_nome + "\n" + tipo_nome);
+    }
+
 
     private void toast(String msg){
 
