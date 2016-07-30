@@ -22,7 +22,7 @@ public class NovoGasto extends Activity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         //Infla o menu com os botoes da action bar
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_novo_gasto, menu);
 
         return true;
     }

@@ -26,7 +26,7 @@ public final String data_agora = "";
         //Pega a action bar
         ActionBar actionBar = getActionBar();
         //Define um nome a ser exebido na action bar
-        actionBar.setTitle("Think");
+        actionBar.setTitle("Postal");
         //Define uma logo a ser exebido na action bar
         actionBar.setIcon(R.drawable.ic_logo);
         //Ativa a exibicao do nome na action bar

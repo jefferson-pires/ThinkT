@@ -50,7 +50,7 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         //Infla o menu com os botoes da action bar
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        getMenuInflater().inflate(R.menu.menu_minhas_viagens, menu);
 
         return true;
     }
