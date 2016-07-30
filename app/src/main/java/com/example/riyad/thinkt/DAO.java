@@ -58,6 +58,17 @@ public class DAO extends Application{
         return viagens;
     }
 
+    //Metodo para pegar o nome de todas as viagens
+    public ArrayList<String> nomesViagens(){
+        ArrayList<String> nomes = new ArrayList<>();
+        ArrayList<Viagem> viagens = this.listarTodas();
+        for (Viagem v: viagens) {
+            nomes.add(v.getLocalViagem());
+        }
+
+        return nomes;
+    }
+
     public Viagem remove(long id) {
         return banco.remove(id);
     }
