@@ -12,7 +12,7 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class DAO extends Application{
     private static Map<Integer, Viagem> banco = new HashMap<Integer, Viagem>();
-    private static AtomicLong contador = new AtomicLong(3);
+    private static AtomicLong contador = new AtomicLong(2);
 
     static {
         ArrayList<Gasto> gastos = new ArrayList<Gasto>();
@@ -33,18 +33,11 @@ public class DAO extends Application{
         Viagem viagem2 = new Viagem(R.drawable.negocios,"Miami","22/05/2016",gastos2);
         viagem2.setId(2);
 
-        ArrayList<Gasto> gastos3 = new ArrayList<Gasto>();
-        Gasto gasto5 = new Gasto(40.00,"27/06/2016","transporte");
-        Gasto gasto6 = new Gasto(150.00,"27/06/2016","alimentação");
-        gastos3.add(gasto5);
-        gastos3.add(gasto6);
 
-        Viagem viagem3 = new Viagem(R.drawable.negocios,"Piaui","12/06/2016",gastos2);
-        viagem2.setId(3);
 
         banco.put(1,viagem1);
         banco.put(2,viagem2);
-        banco.put(3,viagem3);
+
     }
 
     public void adiciona(Viagem viagem) {
@@ -53,7 +46,7 @@ public class DAO extends Application{
         banco.put(id, viagem);
     }
 
-    public Viagem busca(Long id) {
+    public Viagem busca(int id) {
         return banco.get(id);
     }
 

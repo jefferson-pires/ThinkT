@@ -6,45 +6,31 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class MinhasViagens extends Activity implements AdapterView.OnItemClickListener {
+public class MeusGastos extends Activity {
     private ListView listview ;
-    ArrayList<Viagem> viagens ;
+    ArrayList<Gasto> gastos;
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_minhas_viagens);
+        setContentView(R.layout.activity_meus_gastos);
         ActionBar actionBar = getActionBar();
-        actionBar.setTitle("Minhas viagens");
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setIcon(R.drawable.minhas_viagens);
+        actionBar.setTitle("Meus Gastos");
+        actionBar.setIcon(R.drawable.novo_gasto);
         //Funcao que ativa o botao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
+        Intent intent = getIntent();
+        //pega o id da viagem que recebeu o click
+        int idViagem = intent.getIntExtra("Valor", 0);
 
         DAO application = (DAO) getApplication();
-        viagens = application.listarTodas();
-        listview = (ListView)findViewById(R.id.minhasViagensList);
-        listview.setAdapter(new ViagensAdapter(this,viagens));
-        listview.setOnItemClickListener(this);
-
-    }
-
-    // ao clicar em um itém da lista de Viagens vai abrir outra tela com os gastos daquela viagem
-    public void onItemClick(AdapterView<?> parent, View view,int idx, long id){
-        int item = (int) listview.getItemIdAtPosition(idx);
-        Viagem v = this.viagens.get(item);
-        Intent intent = new Intent(this,MeusGastos.class);
-        //pega o id da viagem que recebeu o click
-        intent.putExtra("Valor",v.getId());
-        startActivity(intent);
-        Toast.makeText(this, "Local: " + v.getLocalViagem(),Toast.LENGTH_SHORT).show();
+        gastos = application.busca(idViagem).getGastos();
+        listview = (ListView)findViewById(R.id.gastosList);
+        listview.setAdapter(new GastosAdapter(this,gastos));
     }
 
     @Override
@@ -67,5 +53,4 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
 
         return super.onMenuItemSelected(featureId, item);
     }
-
 }

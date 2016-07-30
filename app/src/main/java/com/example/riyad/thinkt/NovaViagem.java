@@ -125,7 +125,7 @@ public class NovaViagem extends Activity {
         viagem.setLocalViagem(destino);
         viagem.setData(data);
         dao.adiciona(viagem);
-        toast("viagem gravada com sucesso!\nDestino: " + destino + "\nTipo: " + tipo + "\ndata: " + data);
+        toast("viagem gravada com sucesso!");
     }
 
 
