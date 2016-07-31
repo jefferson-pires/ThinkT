@@ -125,10 +125,24 @@ public class NovaViagem extends Activity {
     public void gravarViagem(View view){
         EditText et_Destino = (EditText) findViewById(R.id.et_Destino);
         destino = et_Destino.getText().toString();
-        viagem.setLocalViagem(destino);
-        viagem.setData(data);
-        dao.adiciona(viagem);
-        toast("viagem gravada com sucesso!");
+        //Valida os campos (preenchimento)
+        if(destino.isEmpty()){
+            toast("Destino não da viagem não defenido!");
+        }else{
+            if(tipo.equals("")){
+                toast("Tipo da viagem não defenido!");
+            }else{
+                if(data.equals("")){
+                    toast("Data da viagem não defenido!");
+                }else{
+                    viagem.setLocalViagem(destino);
+                    viagem.setData(data);
+                    dao.adiciona(viagem);
+                    toast("viagem gravada com sucesso!");
+                }
+            }
+        }
+
     }
 
 

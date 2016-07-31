@@ -32,6 +32,7 @@ public class NovoGasto extends Activity{
     private String tipo_nome ="teste";
     private Gasto gasto;
     private Viagem viagem;
+    private static Double db_valor = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,11 +141,20 @@ public class NovoGasto extends Activity{
 
     public void salvarGasto(View v){
         EditText ed_Valor = (EditText) findViewById(R.id.et_Valor);
-        double db_valor = Double.parseDouble(ed_Valor.getText().toString());
-        gasto = new Gasto(db_valor, data, tipo_nome);
-        //Salva o novo gasto na viagem especifica
-        dao.busca((destino.indexOf((destino_nome))+1)).setGastos(gasto);
-        toast("Gasto salvo com sucesso!\n" + destino_nome + "\n" + tipo_nome + "\n" + gasto.getValor());
+        //Valida se o valor inserido eh um numero
+        if(ed_Valor.getText().toString().equals("")){
+            toast("Valor do gasto não defenido!");
+        }else{
+            db_valor = Double.parseDouble(ed_Valor.getText().toString());
+            if(data.equals("")){
+                toast("Data do gasto não defenida!");
+            }else{
+                gasto = new Gasto(db_valor, data, tipo_nome);
+                //Salva o novo gasto na viagem especifica
+                dao.busca((destino.indexOf((destino_nome))+1)).setGastos(gasto);
+                toast("Gasto salvo com sucesso!");
+            }
+        }
 
     }
 

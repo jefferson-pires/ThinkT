@@ -95,15 +95,19 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
             @Override
             public boolean onQueryTextSubmit(String query){
                 //Usuario fez a busca
+                int id;
                 for (Viagem v: viagens) {
                     if(v.getLocalViagem().equals(query)){
+                        id = v.getId();
                         busca.add(v);
                         break;
                     }
                 }
 
+
                 listview.setAdapter(new ViagensAdapter(MinhasViagens.this,busca));
                 listview.setOnItemClickListener(MinhasViagens.this);
+                listview.refreshDrawableState();
                 toast("Resultado da busca para " + query);
                 return  false;
             }
