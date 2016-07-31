@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -24,10 +26,12 @@ public class NovoGasto extends Activity{
     public static String data = "";
 
     private List<String> destino;
-    DAO dao;
+    private DAO dao;
     private  static  Button bt_data;
     private String destino_nome ="teste";
     private String tipo_nome ="teste";
+    private Gasto gasto;
+    private Viagem viagem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,9 +139,15 @@ public class NovoGasto extends Activity{
     }
 
     public void salvarGasto(View v){
-        toast("Gasto salvo com sucesso!\n" + destino_nome + "\n" + tipo_nome);
-    }
+        EditText ed_Valor = (EditText) findViewById(R.id.et_Valor);
+        double db_valor = Double.parseDouble(ed_Valor.getText().toString());
+        gasto = new Gasto(db_valor, data, tipo_nome);
+        dao.busca((destino.indexOf((destino_nome))+1)).setGastos(gasto);
+        Intent intent = new Intent(this, MinhasViagens.class);
+        startActivity(intent);
+        toast("Gasto salvo com sucesso!\n" + destino_nome + "\n" + tipo_nome + "\n" + gasto.getValor());
 
+    }
 
     private void toast(String msg){
 
