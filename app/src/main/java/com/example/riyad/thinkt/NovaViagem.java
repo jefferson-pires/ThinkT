@@ -135,7 +135,7 @@ public class NovaViagem extends Activity {
     @Override
     protected void onRestart() {
         super.onRestart();
-        Intent i = new Intent(NovaViagem.this, NovaViagem.class);  //your class
+        Intent i = new Intent(NovaViagem.this, NovaViagem.class);
         startActivity(i);
         finish();
     }
