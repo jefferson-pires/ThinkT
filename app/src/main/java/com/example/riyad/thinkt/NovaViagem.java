@@ -129,6 +129,15 @@ public class NovaViagem extends Activity {
         viagem.setData(data);
         dao.adiciona(viagem);
         toast("viagem gravada com sucesso!");
+        onRestart();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent i = new Intent(NovaViagem.this, NovaViagem.class);  //your class
+        startActivity(i);
+        finish();
     }
 
 

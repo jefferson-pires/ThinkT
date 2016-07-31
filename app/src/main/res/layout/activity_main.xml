@@ -32,8 +32,8 @@
         android:onClick="novoGasto"
         android:text="Novo gasto"
         android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/minhas_viagens"
-        android:layout_alignEnd="@+id/minhas_viagens" />
+        android:layout_alignLeft="@+id/minhas_viagens"
+        android:layout_alignStart="@+id/minhas_viagens" />
 
     <TextView
         android:id="@+id/minhas_viagens"
