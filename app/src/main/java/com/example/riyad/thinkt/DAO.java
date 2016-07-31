@@ -54,7 +54,9 @@ public class DAO extends Application{
         ArrayList<Viagem> viagens = new ArrayList<Viagem>();
         for (int i = 1; i <= banco.size() ; i++) {
             viagens.add(banco.get(i));
+            System.out.println(banco.get(i).getId());
         }
+
         return viagens;
     }
 

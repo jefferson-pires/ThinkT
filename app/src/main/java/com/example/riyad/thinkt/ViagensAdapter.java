@@ -48,6 +48,7 @@ public class ViagensAdapter extends BaseAdapter {
 
         Viagem viagem = viagens.get(position);
 
+
         // Converter o total gastos em String
         String totalGastosString = String.valueOf(viagem.totalGastos());
         // Retira o ponto e coloca virgula
