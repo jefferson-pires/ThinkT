@@ -10,4 +10,5 @@
         <item>Transporte</item>
         <item>Outros</item>
     </string-array>
+    <string name="action_extras">Extras</string>
 </resources>

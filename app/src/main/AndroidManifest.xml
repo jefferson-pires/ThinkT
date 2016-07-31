@@ -20,7 +20,10 @@
         <activity android:name=".NovoGasto" />
         <activity android:name=".MinhasViagens" />
         <activity android:name=".MeuPerfil" />
-        <activity android:name=".MeusGastos"></activity>
+        <activity android:name=".MeusGastos" />
+        <activity android:name=".Extras" />
+        <activity android:name=".BuscarFotos" />
+        <activity android:name=".BuscarPassagens"></activity>
     </application>
 
 </manifest>
