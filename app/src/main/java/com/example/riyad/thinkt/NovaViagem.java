@@ -42,8 +42,6 @@ public class NovaViagem extends Activity {
         dao = (DAO) getApplication();
         //Cria um botao para a data
         bt_Data = (Button) findViewById(R.id.bt_DatePicker);
-
-
     }
 
     @Override
@@ -142,6 +140,17 @@ public class NovaViagem extends Activity {
                 }
             }
         }
+        onRestart();
+    }
+
+    @Override
+    protected void onRestart() {
+
+        // TODO Auto-generated method stub
+        super.onRestart();
+        Intent i = new Intent(NovaViagem.this,NovaViagem.class);  //your clas
+        startActivity(i);
+        finish();
 
     }
 

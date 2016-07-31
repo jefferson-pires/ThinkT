@@ -145,13 +145,13 @@ public class NovoGasto extends Activity{
         if(ed_Valor.getText().toString().equals("")){
             toast("Valor do gasto não defenido!");
         }else{
-            db_valor = Double.parseDouble(ed_Valor.getText().toString());
+            db_valor = Double.parseDouble(ed_Valor.getText().toString().replace(",","."));
             if(data.equals("")){
                 toast("Data do gasto não defenida!");
             }else{
                 gasto = new Gasto(db_valor, data, tipo_nome);
                 //Salva o novo gasto na viagem especifica
-                dao.busca((destino.indexOf((destino_nome))+1)).setGastos(gasto);
+                dao.busca((destino.indexOf((destino_nome)) + 1)).setGastos(gasto);
                 toast("Gasto salvo com sucesso!");
             }
         }

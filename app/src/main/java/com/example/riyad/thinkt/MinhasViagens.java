@@ -34,7 +34,7 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
         DAO application = (DAO) getApplication();
         viagens = application.listarTodas();
         listview = (ListView)findViewById(R.id.minhasViagensList);
-        listview.setAdapter(new ViagensAdapter(this,viagens));
+        listview.setAdapter(new ViagensAdapter(this, viagens));
         listview.setOnItemClickListener(this);
         busca = new ArrayList<>();
 
@@ -46,7 +46,7 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
         Viagem v = this.viagens.get(item);
         Intent intent = new Intent(this,MeusGastos.class);
         //pega o id da viagem que recebeu o click
-        intent.putExtra("Valor",v.getId());
+        intent.putExtra("Valor", v.getId());
         startActivity(intent);
         Toast.makeText(this, "Local: " + v.getLocalViagem(),Toast.LENGTH_SHORT).show();
     }
@@ -97,17 +97,20 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
                 //Usuario fez a busca
                 int id;
                 for (Viagem v: viagens) {
-                    if(v.getLocalViagem().equals(query)){
+                    System.out.println(v.getId());
+                    if(v.getLocalViagem().toUpperCase().equals(query.toUpperCase())){
                         id = v.getId();
                         busca.add(v);
+                        System.out.println(id);
                         break;
                     }
                 }
 
-
+                listview.removeAllViewsInLayout();
                 listview.setAdapter(new ViagensAdapter(MinhasViagens.this,busca));
                 listview.setOnItemClickListener(MinhasViagens.this);
                 listview.refreshDrawableState();
+
                 toast("Resultado da busca para " + query);
                 return  false;
             }
