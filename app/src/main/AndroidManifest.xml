@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="riyad.ifpi.trabalho.tep.NovaViagem" />
         <activity android:name=".NovaViagem" />
         <activity android:name=".NovoGasto" />
         <activity android:name=".MinhasViagens" />

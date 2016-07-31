@@ -42,8 +42,8 @@ public final String data_agora = "";
     public boolean onCreateOptionsMenu(Menu menu){
         //Infla o menu com os botoes da action bar
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        //Searchview
 
+        //Searchview
         MenuItem item = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setOnQueryTextListener(onSearch());
