@@ -142,9 +142,8 @@ public class NovoGasto extends Activity{
         EditText ed_Valor = (EditText) findViewById(R.id.et_Valor);
         double db_valor = Double.parseDouble(ed_Valor.getText().toString());
         gasto = new Gasto(db_valor, data, tipo_nome);
+        //Salva o novo gasto na viagem especifica
         dao.busca((destino.indexOf((destino_nome))+1)).setGastos(gasto);
-        Intent intent = new Intent(this, MinhasViagens.class);
-        startActivity(intent);
         toast("Gasto salvo com sucesso!\n" + destino_nome + "\n" + tipo_nome + "\n" + gasto.getValor());
 
     }

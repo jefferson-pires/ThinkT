@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -26,6 +27,7 @@ public class NovaViagem extends Activity {
 
     private Viagem viagem ;
     DAO dao;
+    private static Button bt_Data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,8 @@ public class NovaViagem extends Activity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         viagem = new Viagem();
         dao = (DAO) getApplication();
+        //Cria um botao para a data
+        bt_Data = (Button) findViewById(R.id.bt_DatePicker);
 
 
     }
@@ -72,13 +76,11 @@ public class NovaViagem extends Activity {
         switch (view.getId()){
             case R.id.rb_Lazer:
                 if (checked)
-                    toast("Tipo da viagem defenido como lazer");
                     tipo="Lazer";
                     viagem.setIcone(R.drawable.lazer);
                 break;
             case R.id.rb_Negocios:
                 if(checked)
-                    toast("Tipo da viagem defenido como negocios");
                     tipo = "Negocios";
                     viagem.setIcone(R.drawable.negocios);
                 break;
@@ -107,6 +109,7 @@ public class NovaViagem extends Activity {
         public void onDateSet(DatePicker view, int ano, int mes, int dia ){
             //Faz alguma coisa com a data escolhida pelo usuario
             data = (dia + "/" + (mes+1) + "/" + ano);
+            bt_Data.setText(data);
 
         }
     }

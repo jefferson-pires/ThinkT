@@ -54,11 +54,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
         android:id="@+id/bt_DatePicker"
         android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
-        android:onClick="showDatePickerDialog"/>
+        android:onClick="showDatePickerDialog"
+        android:text="Dia/Mes/Ano" />
 
     <TextView
         android:layout_width="wrap_content"
