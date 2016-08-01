@@ -43,47 +43,14 @@ public final String data_agora = "";
         //Infla o menu com os botoes da action bar
         getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        //Searchview
-        MenuItem item = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) item.getActionView();
-        searchView.setOnQueryTextListener(onSearch());
-
         return true;
-    }
-
-    private SearchView.OnQueryTextListener onSearch(){
-        return new SearchView.OnQueryTextListener(){
-            @Override
-            public boolean onQueryTextSubmit(String query){
-                //Usuario fez a busca
-                toast("Buscar o texto: " + query);
-                return  false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText){
-                //Mudou o texto digitado
-                return false;
-            }
-        };
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
 
-        if(id == R.id.action_search){
-            toast("Clicou no Search!");
-            return true;
-        }else if(id == R.id.action_refresh){
-            toast("Clicou no refresh!");
-            return true;
-        }else if(id == R.id.action_settings){
-            toast("Clicou no settings");
-            return true;
-        } else if(id == R.id.action_share){
-            toast("Clicou no share!");
-            return true;
-        } else if(id == R.id.action_extras){
+        if(id == R.id.action_extras){
             Intent intent = new Intent(this, Extras.class);
             startActivity(intent);
             return true;
@@ -110,10 +77,6 @@ public final String data_agora = "";
         return super.onMenuItemSelected(featureId, item);
     }
 
-    public void selecionarOpcao(){
-        toast("voce selecionou: ");
-    }
-
     public void novaViagem(View view){
         Intent intent = new Intent(this, NovaViagem.class);
         startActivity(intent);
@@ -134,8 +97,5 @@ public final String data_agora = "";
         Intent intent = new Intent(this, MeuPerfil.class);
         startActivity(intent);
     }
-
-
-
 
 }

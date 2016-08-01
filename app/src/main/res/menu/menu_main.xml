@@ -3,27 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
-    <item android:id="@+id/action_search"
-        android:icon="@drawable/ic_action_search"
-        android:title="@string/action_search"
-        android:showAsAction="never"
-        android:actionViewClass="android.widget.SearchView"/>
-
-    <item android:id="@+id/action_refresh"
-        android:icon="@drawable/ic_action_refresh"
-        android:title="@string/action_refresh"
-        android:showAsAction="never"/>
-
-    <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:showAsAction="never"/>
-
     <item android:id="@+id/action_extras"
         android:title="@string/action_extras"
         android:icon="@drawable/ic_add"
         android:showAsAction="never"/>
-
-
-
 
 </menu>
