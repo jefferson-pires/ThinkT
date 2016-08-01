@@ -2,11 +2,28 @@ package com.example.riyad.thinkt;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+
+import java.util.List;
 
 public class BuscarFotos extends Activity {
+    private List<String> destino;
+    private DAO dao;
+    private  static Button bt_data;
+    private String destino_nome ="teste";
+    private String tipo_nome ="teste";
+    private Gasto gasto;
+    private Viagem viagem;
+    private static Double db_valor = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +41,27 @@ public class BuscarFotos extends Activity {
         actionBar.setDisplayShowHomeEnabled(true);
         //Ativa a opcao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
+        dao = (DAO) getApplication();
+        //Pega todos os nomes de todas as viagens
+        destino = dao.nomesViagens();
+        //Cria o primeiro spinner (viagens)
+        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        //Cria um ArrayAdapter usando um layout de spinner padrao
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, destino);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
+        spinner.setAdapter(adapter);
+        //Se selecionar algum destino atualiza a variavel nome_destino
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View v, int posicao, long id){
+                //Atualiza o nome
+                destino_nome = spinner.getSelectedItem().toString();
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent){
+
+            }
+        });
     }
 
     @Override
@@ -45,5 +83,13 @@ public class BuscarFotos extends Activity {
         }
 
         return super.onMenuItemSelected(featureId, item);
+    }
+
+    //Metodo de tratamento do evento clicar no botao
+    public void buscarFotos(View view){
+        String site = "https://www.google.com.br/search?hl=pt-BR&site=imghp&tbm=isch&source=hp&biw=1366&bih=599&q=cidade+" + destino_nome;
+        Uri uri = Uri.parse(site);
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }
