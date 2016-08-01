@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.SearchView;
-import android.widget.ShareActionProvider;
 import android.widget.Toast;
 
 public class Extras extends Activity {
@@ -81,7 +79,7 @@ public class Extras extends Activity {
 
     //Metodo de tratamento para procurar passagens
     public void buscarPassagem(View v){
-        Intent intent = new Intent(this, BuscarPassagens.class);
+        Intent intent = new Intent(this, Mapa.class);
         startActivity(intent);
     }
 

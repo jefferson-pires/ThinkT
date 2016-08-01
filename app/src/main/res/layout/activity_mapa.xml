@@ -7,31 +7,32 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.riyad.thinkt.Extras">
+    tools:context=".Mapa">
 
-    <TextView
-        android:id="@+id/exibir_fotos"
+
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:gravity="center"
-        android:drawableTop="@drawable/ic_camera"
-        android:onClick="exibirFotos"
-        android:text="Procurar Fotos"
+        android:id="@+id/spinner"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selecione o destino"
+        android:id="@+id/textView8"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:id="@+id/buscar_passagem"
-        android:layout_width="wrap_content"
+    <Button
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:gravity="center"
-        android:drawableTop="@drawable/ic_add_location"
-        android:onClick="buscarPassagem"
         android:text="Mapa"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/exibir_fotos"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/button"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="mapa"/>
 
 </RelativeLayout>

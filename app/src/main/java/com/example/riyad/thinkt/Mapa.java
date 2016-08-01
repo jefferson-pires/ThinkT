@@ -10,12 +10,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.Spinner;
 
 import java.util.List;
 
-public class BuscarFotos extends Activity {
+public class Mapa extends Activity {
     private List<String> destino;
     private DAO dao;
     private String destino_nome ="teste";
@@ -23,13 +22,13 @@ public class BuscarFotos extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_buscar_fotos);
+        setContentView(R.layout.activity_mapa);
         //Pega a action bar
         ActionBar actionBar = getActionBar();
         //Define um nome a ser exebido na action bar
-        actionBar.setTitle("Buscar Fotos");
+        actionBar.setTitle("Mapa");
         //Define uma logo a ser exebido na action bar
-        actionBar.setIcon(R.drawable.ic_camera);
+        actionBar.setIcon(R.drawable.ic_add_location);
         //Ativa a exibicao do nome na action bar
         actionBar.setDisplayShowTitleEnabled(true);
         //Ativa a exibicao do icone na action bar
@@ -59,6 +58,7 @@ public class BuscarFotos extends Activity {
         });
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         //Infla o menu com os botoes da action bar
@@ -79,12 +79,12 @@ public class BuscarFotos extends Activity {
 
         return super.onMenuItemSelected(featureId, item);
     }
-
     //Metodo de tratamento do evento clicar no botao
-    public void buscarFotos(View view){
-        String site = "https://www.google.com.br/search?hl=pt-BR&site=imghp&tbm=isch&source=hp&biw=1366&bih=599&q=cidade+" + destino_nome;
-        Uri uri = Uri.parse(site);
+    public void mapa(View view){
+        String GEO_URI = "geo:0,0?q=" + destino_nome + " - Brasil";
+        Uri uri = Uri.parse(GEO_URI);
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
+
 }
