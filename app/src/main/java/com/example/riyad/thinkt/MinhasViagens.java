@@ -19,6 +19,7 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
     private ListView listview ;
     ArrayList<Viagem> viagens;
     ArrayList<Viagem> busca;
+    ViagemDB dao;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -31,8 +32,8 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
         //Funcao que ativa o botao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        DAO application = (DAO) getApplication();
-        viagens = application.listarTodas();
+        dao =  new ViagemDB(this);
+        viagens = dao.findAll();
         listview = (ListView)findViewById(R.id.minhasViagensList);
         listview.setAdapter(new ViagensAdapter(this, viagens));
         listview.setOnItemClickListener(this);
@@ -97,7 +98,6 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
                 //Usuario fez a busca
                 int id;
                 for (Viagem v: viagens) {
-                    System.out.println(v.getId());
                     if(v.getLocalViagem().toUpperCase().equals(query.toUpperCase())){
                         id = v.getId();
                         busca.add(v);
@@ -151,5 +151,4 @@ public class MinhasViagens extends Activity implements AdapterView.OnItemClickLi
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-
 }

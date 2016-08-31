@@ -36,6 +36,8 @@ public final String data_agora = "";
         //Desativa a opcao up navagation
         actionBar.setDisplayHomeAsUpEnabled(false);
 
+
+
     }
 
     @Override
@@ -92,8 +94,9 @@ public final String data_agora = "";
         startActivity(intent);
     }
 
-    public void meuPerfil(View view){
 
+
+    public void meuPerfil(View view){
         Intent intent = new Intent(this, MeuPerfil.class);
         startActivity(intent);
     }

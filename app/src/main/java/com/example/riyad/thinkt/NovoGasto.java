@@ -19,20 +19,21 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class NovoGasto extends Activity{
     public static String data = "";
-
-    private List<String> destino;
-    private DAO dao;
+    private ArrayList<String> destino;
+    private ViagemDB dao;
     private  static  Button bt_data;
     private String destino_nome ="teste";
     private String tipo_nome ="teste";
     private Gasto gasto;
     private Viagem viagem;
     private static Double db_valor = 0.0;
+    private ArrayList<Viagem> viagens ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +44,14 @@ public class NovoGasto extends Activity{
         actionBar.setIcon(R.drawable.novo_gasto);
         //Funcao que ativa o botao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
-        dao = (DAO) getApplication();
+        dao = new ViagemDB(this);
+        destino = new ArrayList<String>();
         //Pega todos os nomes de todas as viagens
-        destino = dao.nomesViagens();
+        viagens = dao.findAll();
+        System.out.println(viagens.get(1).getLocalViagem());
+        for (Viagem viagem: viagens) {
+            destino.add(viagem.getLocalViagem());
+        }
         //Cria o primeiro spinner (viagens)
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         //Cria um ArrayAdapter usando um layout de spinner padrao
@@ -151,7 +157,8 @@ public class NovoGasto extends Activity{
             }else{
                 gasto = new Gasto(db_valor, data, tipo_nome);
                 //Salva o novo gasto na viagem especifica
-                dao.busca((destino.indexOf((destino_nome)) + 1)).setGastos(gasto);
+                dao.findById((destino.indexOf((destino_nome)) + 1)).setGastos(gasto);
+
                 toast("Gasto salvo com sucesso!");
             }
         }

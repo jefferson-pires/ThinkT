@@ -28,6 +28,7 @@ public class NovaViagem extends Activity {
     private Viagem viagem ;
     DAO dao;
     private static Button bt_Data;
+    ViagemDB db ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,7 @@ public class NovaViagem extends Activity {
         //Funcao que ativa o botao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
         viagem = new Viagem();
-        dao = (DAO) getApplication();
+        db = new ViagemDB(this);
         //Cria um botao para a data
         bt_Data = (Button) findViewById(R.id.bt_DatePicker);
     }
@@ -135,7 +136,8 @@ public class NovaViagem extends Activity {
                 }else{
                     viagem.setLocalViagem(destino);
                     viagem.setData(data);
-                    dao.adiciona(viagem);
+
+                    db.save(viagem);
                     toast("viagem gravada com sucesso!");
                 }
             }

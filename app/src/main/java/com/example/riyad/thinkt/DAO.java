@@ -56,7 +56,6 @@ public class DAO extends Application{
             viagens.add(banco.get(i));
             System.out.println(banco.get(i).getId());
         }
-
         return viagens;
     }
 
@@ -71,7 +70,7 @@ public class DAO extends Application{
         return nomes;
     }
 
-    public Viagem remove(long id) {
+    public Viagem remove(int id) {
         return banco.remove(id);
     }
 }
