@@ -12,12 +12,14 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mapa extends Activity {
-    private List<String> destino;
-    private DAO dao;
+    private ArrayList<String> destino;
+    private ViagemDB dao;
     private String destino_nome ="teste";
+    ArrayList<Viagem> viagens ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +37,13 @@ public class Mapa extends Activity {
         actionBar.setDisplayShowHomeEnabled(true);
         //Ativa a opcao up navagation
         actionBar.setDisplayHomeAsUpEnabled(true);
-        dao = (DAO) getApplication();
+        dao = new ViagemDB(this);
         //Pega todos os nomes de todas as viagens
-        destino = dao.nomesViagens();
+        viagens = dao.findAll();
+        destino = new ArrayList<String>();
+        for (Viagem viagem:viagens) {
+            destino.add(viagem.getLocalViagem());
+        }
         //Cria o primeiro spinner (viagens)
         final Spinner spinner = (Spinner) findViewById(R.id.spinner);
         //Cria um ArrayAdapter usando um layout de spinner padrao

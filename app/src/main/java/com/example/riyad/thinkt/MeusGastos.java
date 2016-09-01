@@ -27,8 +27,8 @@ public class MeusGastos extends Activity {
         //pega o id da viagem que recebeu o click
         int idViagem = intent.getIntExtra("Valor", 0);
 
-        DAO application = (DAO) getApplication();
-        gastos = application.busca(idViagem).getGastos();
+        ViagemDB db = new ViagemDB(this);
+        gastos = db.buscarGastosPorViagem(idViagem);
         listview = (ListView)findViewById(R.id.gastosList);
         listview.setAdapter(new GastosAdapter(this,gastos));
     }
