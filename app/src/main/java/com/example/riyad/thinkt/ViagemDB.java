@@ -26,15 +26,9 @@ public class ViagemDB extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.d(TAG, "Criando a Tabela viagem...");
+        Log.d(TAG, "Criando a Tabela post...");
         db.execSQL("create table if not exists viagem(_id integer primary key " +
                 "autoincrement, icone int, localViagem text, data text);");
-        Log.d(TAG, "Tabela criada com sucesso");
-
-        Log.d(TAG, "Criando a Tabela gasto...");
-        db.execSQL("create table if not exists gasto(_id integer primary key autoincrement, " +
-                "constraint`idViagem` foreign key ( `_id` ) references `viagem` ( `_id` )" +
-                ", valor double, data text, tipo text;");
         Log.d(TAG, "Tabela criada com sucesso");
 
     }
@@ -52,16 +46,12 @@ public class ViagemDB extends SQLiteOpenHelper {
             values.put("icone", viagem.getIcone());
             values.put("data", viagem.getData());
             values.put("localViagem", viagem.getLocalViagem());
-
-            ContentValues values2 = new ContentValues();
-
             if(id != 0){
                 String _id = String.valueOf(viagem.getId());
                 String[]whereArgs = new String[]{_id};
-
+                //update carro set values = ... where id=?
                 int count = db.update("viagem", values, "_id=?", whereArgs);
                 Log.d(TAG, "Post atualizado com sucesso");
-
                 return count;
             }else{
                 //insert into post values(...)
@@ -70,66 +60,6 @@ public class ViagemDB extends SQLiteOpenHelper {
                 return id;
             }
         }finally {
-            db.close();
-        }
-    }
-
-    public long saveGasto(Gasto gasto){
-        long id = gasto.getId() ;
-        SQLiteDatabase db = getWritableDatabase();
-        try{
-            ContentValues values = new ContentValues();
-            values.put("valor", gasto.getValor());
-            values.put("tipo", gasto.getTipo());
-            values.put("idViagem", gasto.getId());
-            values.put("data", gasto.getData());
-
-            if(id != 0){
-                String _id = String.valueOf(gasto.getId());
-                String[]whereArgs = new String[]{_id};
-
-                int count = db.update("gasto", values, "_id=?", whereArgs);
-                Log.d(TAG, "Gasto atualizado com sucesso");
-
-                return count;
-            }else{
-                //insert into post values(...)
-                id = db.insert("gasto", "", values);
-                Log.d(TAG, "Gasto adicionado com sucesso");
-                return id;
-            }
-        }finally {
-            db.close();
-        }
-    }
-
-    public ArrayList<Gasto> buscarGastosPorViagem(int idViagem){
-
-        SQLiteDatabase db = getReadableDatabase();
-        Cursor c = null;
-        try {
-            c = db.query("gasto", null, "idViagem = ?", new String[]{String.valueOf(idViagem)},null, null, null);
-            c.moveToFirst();
-            ArrayList<Gasto> gastos = new ArrayList<Gasto>();
-            for(int i = 0; i <= c.getCount();i++){
-                Gasto gasto = new Gasto();
-                gasto.setData(c.getString(c.getColumnIndex("data")));
-                gasto.setId(c.getInt(c.getColumnIndex("_id")));
-                gasto.setIdViagem(c.getInt(c.getColumnIndex("idViagem")));
-                gasto.setValor(c.getDouble(c.getColumnIndex("valor")));
-                gasto.setTipo(c.getString(c.getColumnIndex("tipo")));
-
-                gastos.add(gasto);
-            }
-            Log.d(TAG, "Consultou viagem.");
-            return gastos;
-        } catch (Exception e) {
-            Log.d(TAG, "Erro: " + e.getMessage());
-            return null;
-        } finally {
-            if (c != null) {
-                c.close();
-            }
             db.close();
         }
     }

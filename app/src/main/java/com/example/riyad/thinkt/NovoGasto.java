@@ -48,7 +48,7 @@ public class NovoGasto extends Activity{
         destino = new ArrayList<String>();
         //Pega todos os nomes de todas as viagens
         viagens = dao.findAll();
-
+        System.out.println(viagens.get(1).getLocalViagem());
         for (Viagem viagem: viagens) {
             destino.add(viagem.getLocalViagem());
         }
@@ -155,10 +155,9 @@ public class NovoGasto extends Activity{
             if(data.equals("")){
                 toast("Data do gasto não defenida!");
             }else{
-                int idViagem = destino.indexOf((destino_nome)) + 1;
-                gasto = new Gasto(db_valor, data, tipo_nome,idViagem);
+                gasto = new Gasto(db_valor, data, tipo_nome);
                 //Salva o novo gasto na viagem especifica
-                dao.saveGasto(gasto);
+                dao.findById((destino.indexOf((destino_nome)) + 1)).setGastos(gasto);
 
                 toast("Gasto salvo com sucesso!");
             }

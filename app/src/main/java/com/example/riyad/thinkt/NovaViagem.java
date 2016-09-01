@@ -26,6 +26,7 @@ public class NovaViagem extends Activity {
     public static String data = "";
 
     private Viagem viagem ;
+    DAO dao;
     private static Button bt_Data;
     ViagemDB db ;
 
